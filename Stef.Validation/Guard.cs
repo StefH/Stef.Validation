@@ -49,7 +49,7 @@ namespace Stef.Validation
             return value;
         }
 
-        public static IEnumerable<T> NotNullOrEmpty<T>([ValidatedNotNull] IEnumerable<T> value, [ValidatedNotNull] string parameterName)
+        public static IEnumerable<T>? NotNullOrEmpty<T>([ValidatedNotNull] IEnumerable<T> value, [ValidatedNotNull] string parameterName)
         {
             NotNull(value, parameterName);
 
