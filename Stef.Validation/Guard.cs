@@ -24,9 +24,9 @@ namespace Stef.Validation
             return value;
         }
 
-        public static T NotNull<T>([ValidatedNotNull] T value, [ValidatedNotNull] string parameterName)
+        public static T? NotNull<T>(T? value, [ValidatedNotNull] string parameterName)
         {
-            if (ReferenceEquals(value, null))
+            if (value is null)
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
 
@@ -36,9 +36,9 @@ namespace Stef.Validation
             return value;
         }
 
-        public static T NotNull<T>([ValidatedNotNull] T value, [ValidatedNotNull] string parameterName, [ValidatedNotNull] string propertyName)
+        public static T? NotNull<T>(T? value, [ValidatedNotNull] string parameterName, [ValidatedNotNull] string propertyName)
         {
-            if (ReferenceEquals(value, null))
+            if (value is null)
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
                 NotNullOrEmpty(propertyName, nameof(propertyName));
@@ -63,10 +63,10 @@ namespace Stef.Validation
             return value;
         }
 
-        public static string NotNullOrEmpty([ValidatedNotNull] string value, [ValidatedNotNull] string parameterName)
+        public static string? NotNullOrEmpty(string? value, [ValidatedNotNull] string parameterName)
         {
-            Exception e = null;
-            if (ReferenceEquals(value, null))
+            Exception? e = null;
+            if (value is null)
             {
                 e = new ArgumentNullException(parameterName);
             }
@@ -75,7 +75,7 @@ namespace Stef.Validation
                 e = new ArgumentException(CoreStrings.ArgumentIsEmpty(parameterName));
             }
 
-            if (e != null)
+            if (e is { })
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
 
@@ -85,10 +85,10 @@ namespace Stef.Validation
             return value;
         }
 
-        public static string NotNullOrWhiteSpace([ValidatedNotNull] string value, [ValidatedNotNull] string parameterName)
+        public static string? NotNullOrWhiteSpace(string? value, [ValidatedNotNull] string parameterName)
         {
-            Exception e = null;
-            if (ReferenceEquals(value, null))
+            Exception? e = null;
+            if (value is null)
             {
                 e = new ArgumentNullException(parameterName);
             }
@@ -97,7 +97,7 @@ namespace Stef.Validation
                 e = new ArgumentException(CoreStrings.ArgumentIsEmpty(parameterName));
             }
 
-            if (e != null)
+            if (e is { })
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
 
@@ -107,11 +107,11 @@ namespace Stef.Validation
             return value;
         }
 
-        public static ICollection<T> HasNoNulls<T>([ValidatedNotNull] ICollection<T> value, [ValidatedNotNull] string parameterName) where T : class
+        public static ICollection<T?> HasNoNulls<T>([ValidatedNotNull] ICollection<T?> value, [ValidatedNotNull] string parameterName) where T : class
         {
             NotNull(value, parameterName);
 
-            if (value.Any(e => e == null))
+            if (value.Any(e => e is null))
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
 
