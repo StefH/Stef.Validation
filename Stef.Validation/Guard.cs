@@ -107,7 +107,7 @@ namespace Stef.Validation
             return value;
         }
 
-        public static ICollection<T?> HasNoNulls<T>([ValidatedNotNull] ICollection<T?> value, [ValidatedNotNull] string parameterName) where T : class
+        public static ICollection<T?>? HasNoNulls<T>([ValidatedNotNull] ICollection<T?>? value, [ValidatedNotNull] string parameterName) where T : class
         {
             NotNull(value, parameterName);
 
