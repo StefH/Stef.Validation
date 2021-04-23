@@ -1,10 +1,11 @@
-﻿namespace System
+﻿// ReSharper disable once CheckNamespace
+namespace System
 {
     internal static class StringExtensions
     {
         public static bool IsNullOrWhiteSpace(this string value)
         {
-#if !NET20
+#if !(NET20 || NET35)
             return string.IsNullOrWhiteSpace(value);
 #else
             if (value == null)
