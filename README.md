@@ -27,11 +27,13 @@ public Person(string name, int age)
     }
 }
 ```
+
+
 And this is how we write the same constructor with Stef.Validation:
 
+``` c#
 using Stef.Validation;
 
-``` c#
 public Person(string name, int age)
 {
     Guard.NotNullOrEmpty(name, nameof(name));
