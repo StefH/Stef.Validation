@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-// Based on https://github.com/aspnet/EntityFrameworkCore/src/Shared/Check.cs
+// Based on https://github.com/dotnet/efcore/blob/main/src/Shared/Check.cs
 namespace Stef.Validation
 {
     [DebuggerStepThrough]
