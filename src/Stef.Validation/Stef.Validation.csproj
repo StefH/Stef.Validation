@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net2.0;net35;net4;netstandard1.0;netstandard1.3;netstandard2.0;netstandard2.1</TargetFrameworks>
+    <ProjectGuid>{12804228-91F4-4577-AABB-39584E5A0100}</ProjectGuid>
+    <Description>Argument validation like: Guard.NotNull, Guard.NotNullOrEmpty, Guard.NotNullOrWhiteSpace, Guard.Condition en Guard.HasNoNulls.</Description>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>Stef.Validation.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net2.0'">
+    <PackageReference Include="LinqBridge" Version="1.3.0" />
+  </ItemGroup>
+</Project>

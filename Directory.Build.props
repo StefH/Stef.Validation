@@ -4,11 +4,10 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionPrefix>0.0.3</VersionPrefix>
+    <VersionPrefix>0.0.4</VersionPrefix>
     <Copyright>Copyright © 2020-2021 Stef Heyenrath</Copyright>
     <Authors>Stef Heyenrath</Authors>
     <PackageReleaseNotes>See CHANGELOG.md</PackageReleaseNotes>
-    <!--<PackageIconUrl>https://raw.githubusercontent.com/Handlebars-Net/Handlebars.Net.Helpers/master/resources/hbnet-icon.png</PackageIconUrl>-->
     <PackageProjectUrl>https://github.com/StefH/Stef.Validation</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
