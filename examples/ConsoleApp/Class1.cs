@@ -10,6 +10,11 @@ namespace ConsoleApp
             string s = Guard.NotNullOrEmpty(strValue, nameof(strValue));
         }
 
+        public Class1(long nullableLong)
+        {
+            long l = Guard.NotNull(nullableLong);
+        }
+
         public Class1(int intValue, string strValue)
         {
             int i = Guard.Condition(intValue, v => v > 0, nameof(intValue));
