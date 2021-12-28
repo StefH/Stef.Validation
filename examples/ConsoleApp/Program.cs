@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            new Class1((long?) null);
+            new Class1().Test((long?) null);
         }
     }
 }

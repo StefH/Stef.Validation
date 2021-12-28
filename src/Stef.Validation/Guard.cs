@@ -10,10 +10,10 @@ namespace Stef.Validation
     [DebuggerStepThrough]
     public static class Guard
     {
-        public static T Condition<T>(T? value, Predicate<T?> predicate, [CallerArgumentExpression("value")] string? parameterName = null)
+        public static T Condition<T>(T? value, Predicate<T?> predicate, [CallerArgumentExpression("value")] string? parameterName = null) where T : struct
         {
             NotNull(predicate, nameof(predicate));
-            var result = NotNull(value, nameof(value));
+            var result = NotNull(value, parameterName);
 
             if (!predicate(value))
             {
@@ -25,7 +25,34 @@ namespace Stef.Validation
             return result;
         }
 
-        public static T NotNull<T>(T? value, [CallerArgumentExpression("value")] string? parameterName = null)
+        public static T Condition<T>(T value, Predicate<T> predicate, [CallerArgumentExpression("value")] string? parameterName = null) where T : class , struct
+        {
+            NotNull(predicate, nameof(predicate));
+            var result = NotNull(value, parameterName);
+
+            if (!predicate(value))
+            {
+                NotNullOrEmpty(parameterName, nameof(parameterName));
+
+                throw new ArgumentOutOfRangeException(parameterName);
+            }
+
+            return result;
+        }
+
+        public static T NotNull<T>(T? value, [CallerArgumentExpression("value")] string? parameterName = null) where T : struct
+        {
+            if (value is null)
+            {
+                NotNullOrEmpty(parameterName, nameof(parameterName));
+
+                throw new ArgumentNullException(parameterName);
+            }
+
+            return value.Value;
+        }
+
+        public static T NotNull<T>(T value, [CallerArgumentExpression("value")] string? parameterName = null) where T : class
         {
             if (value is null)
             {
@@ -37,7 +64,7 @@ namespace Stef.Validation
             return value;
         }
 
-        public static T NotNull<T>(T? value, string parameterName, string propertyName)
+        public static T NotNull<T>(T value, string parameterName, string propertyName)
         {
             if (value is null)
             {
@@ -50,22 +77,31 @@ namespace Stef.Validation
             return value;
         }
 
-        public static IEnumerable<T> NotNullOrEmpty<T>(IEnumerable<T>? value, [CallerArgumentExpression("value")] string? parameterName = null)
+        public static IEnumerable<T> NotNullOrEmpty<T>(IEnumerable<T> value, [CallerArgumentExpression("value")] string? parameterName = null)
         {
             IEnumerable<T> result = NotNull(value, parameterName);
 
-            if (result.Count() == 0)
+            // ReSharper disable once PossibleMultipleEnumeration
+            if (!result.Any())
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
 
                 throw new ArgumentException(CoreStrings.CollectionArgumentIsEmpty(parameterName));
             }
 
+            // ReSharper disable once PossibleMultipleEnumeration
             return result;
         }
 
         public static string NotNullOrEmpty(string? value, [CallerArgumentExpression("value")] string? parameterName = null)
         {
+            if (value is null)
+            {
+                NotNullOrEmpty(parameterName, nameof(parameterName));
+
+                throw new ArgumentNullException(parameterName);
+            }
+
             string result = NotNull(value, parameterName);
 
             if (string.IsNullOrEmpty(result))
@@ -76,7 +112,7 @@ namespace Stef.Validation
             return result;
         }
 
-        public static string NotNullOrWhiteSpace(string? value, [CallerArgumentExpression("value")] string? parameterName = null)
+        public static string NotNullOrWhiteSpace(string value, [CallerArgumentExpression("value")] string? parameterName = null)
         {
             string result = NotNull(value, parameterName);
 
@@ -88,10 +124,11 @@ namespace Stef.Validation
             return result;
         }
 
-        public static IEnumerable<T> HasNoNulls<T>(IEnumerable<T?>? value, [CallerArgumentExpression("value")] string? parameterName = null) where T : class
+        public static IEnumerable<T> HasNoNulls<T>(IEnumerable<T> value, [CallerArgumentExpression("value")] string? parameterName = null)
         {
-            IEnumerable<T?> nonNullValue = NotNull(value, parameterName);
+            IEnumerable<T> nonNullValue = NotNull(value, parameterName);
 
+            // ReSharper disable once PossibleMultipleEnumeration
             if (nonNullValue.Any(e => e is null))
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
@@ -99,7 +136,8 @@ namespace Stef.Validation
                 throw new ArgumentException(parameterName);
             }
 
-            return nonNullValue.Cast<T>();
+            // ReSharper disable once PossibleMultipleEnumeration
+            return nonNullValue;
         }
     }
 }
