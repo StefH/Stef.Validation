@@ -10,10 +10,10 @@ namespace Stef.Validation
     [DebuggerStepThrough]
     public static class Guard
     {
-        public static T Condition<T>(T? value, Predicate<T?> predicate, [CallerArgumentExpression("value")] string? parameterName = null) where T : struct
+        public static T Condition<T>(T value, Predicate<T> predicate, [CallerArgumentExpression("value")] string? parameterName = null)
         {
             NotNull(predicate, nameof(predicate));
-            var result = NotNull(value, parameterName);
+            var result = NotNull(value, nameof(value));
 
             if (!predicate(value))
             {
@@ -25,34 +25,7 @@ namespace Stef.Validation
             return result;
         }
 
-        public static T Condition<T>(T value, Predicate<T> predicate, [CallerArgumentExpression("value")] string? parameterName = null) where T : class , struct
-        {
-            NotNull(predicate, nameof(predicate));
-            var result = NotNull(value, parameterName);
-
-            if (!predicate(value))
-            {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
-
-                throw new ArgumentOutOfRangeException(parameterName);
-            }
-
-            return result;
-        }
-
-        public static T NotNull<T>(T? value, [CallerArgumentExpression("value")] string? parameterName = null) where T : struct
-        {
-            if (value is null)
-            {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
-
-                throw new ArgumentNullException(parameterName);
-            }
-
-            return value.Value;
-        }
-
-        public static T NotNull<T>(T value, [CallerArgumentExpression("value")] string? parameterName = null) where T : class
+        public static T NotNull<T>(T value, [CallerArgumentExpression("value")] string? parameterName = null)
         {
             if (value is null)
             {
@@ -102,34 +75,42 @@ namespace Stef.Validation
                 throw new ArgumentNullException(parameterName);
             }
 
-            string result = NotNull(value, parameterName);
-
-            if (string.IsNullOrEmpty(result))
+            if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentException(CoreStrings.ArgumentIsEmpty(parameterName));
             }
 
-            return result;
+            return value;
         }
 
-        public static string NotNullOrWhiteSpace(string value, [CallerArgumentExpression("value")] string? parameterName = null)
+        public static string NotNullOrWhiteSpace(string? value, [CallerArgumentExpression("value")] string? parameterName = null)
         {
-            string result = NotNull(value, parameterName);
+            if (value is null)
+            {
+                NotNullOrEmpty(parameterName, nameof(parameterName));
 
-            if (result.IsNullOrWhiteSpace())
+                throw new ArgumentNullException(parameterName);
+            }
+
+            if (value.IsNullOrWhiteSpace())
             {
                 throw new ArgumentException(CoreStrings.ArgumentIsEmpty(parameterName));
             }
 
-            return result;
+            return value;
         }
 
         public static IEnumerable<T> HasNoNulls<T>(IEnumerable<T> value, [CallerArgumentExpression("value")] string? parameterName = null)
         {
-            IEnumerable<T> nonNullValue = NotNull(value, parameterName);
+            if (value is null)
+            {
+                NotNullOrEmpty(parameterName, nameof(parameterName));
+
+                throw new ArgumentNullException(parameterName);
+            }
 
             // ReSharper disable once PossibleMultipleEnumeration
-            if (nonNullValue.Any(e => e is null))
+            if (value.Any(e => e is null))
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
 
@@ -137,7 +118,7 @@ namespace Stef.Validation
             }
 
             // ReSharper disable once PossibleMultipleEnumeration
-            return nonNullValue;
+            return value;
         }
     }
 }

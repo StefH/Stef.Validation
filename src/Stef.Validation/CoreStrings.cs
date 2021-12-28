@@ -10,7 +10,7 @@ namespace Stef.Validation
 
         public static string ArgumentIsEmpty(string? argumentName)
         {
-            return $"The string argument '{argumentName}' cannot be empty.";
+            return $"Value cannot be empty. (Parameter '{argumentName}')";
         }
 
         public static string CollectionArgumentIsEmpty(string? argumentName)
