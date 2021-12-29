@@ -8,12 +8,12 @@ namespace Stef.Validation
             return $"The property '{property}' of the argument '{argument}' cannot be null.";
         }
 
-        public static string ArgumentIsEmpty(string argumentName)
+        public static string ArgumentIsEmpty(string? argumentName)
         {
-            return $"The string argument '{argumentName}' cannot be empty.";
+            return $"Value cannot be empty. (Parameter '{argumentName}')";
         }
 
-        public static string CollectionArgumentIsEmpty(string argumentName)
+        public static string CollectionArgumentIsEmpty(string? argumentName)
         {
             return $"The collection argument '{argumentName}' must contain at least one element.";
         }

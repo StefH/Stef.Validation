@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 // Based on https://github.com/dotnet/efcore/blob/main/src/Shared/Check.cs
 namespace Stef.Validation
@@ -9,7 +10,7 @@ namespace Stef.Validation
     [DebuggerStepThrough]
     public static class Guard
     {
-        public static T Condition<T>(T? value, [ValidatedNotNull] Predicate<T?> predicate, [ValidatedNotNull] string parameterName)
+        public static T Condition<T>(T value, Predicate<T> predicate, [CallerArgumentExpression("value")] string? parameterName = null)
         {
             NotNull(predicate, nameof(predicate));
             var result = NotNull(value, nameof(value));
@@ -24,7 +25,7 @@ namespace Stef.Validation
             return result;
         }
 
-        public static T NotNull<T>(T? value, [ValidatedNotNull] string parameterName)
+        public static T NotNull<T>(T value, [CallerArgumentExpression("value")] string? parameterName = null)
         {
             if (value is null)
             {
@@ -36,7 +37,7 @@ namespace Stef.Validation
             return value;
         }
 
-        public static T NotNull<T>(T? value, [ValidatedNotNull] string parameterName, [ValidatedNotNull] string propertyName)
+        public static T NotNull<T>(T value, string parameterName, string propertyName)
         {
             if (value is null)
             {
@@ -49,56 +50,75 @@ namespace Stef.Validation
             return value;
         }
 
-        public static IEnumerable<T> NotNullOrEmpty<T>(IEnumerable<T>? value, [ValidatedNotNull] string parameterName)
+        public static IEnumerable<T> NotNullOrEmpty<T>(IEnumerable<T> value, [CallerArgumentExpression("value")] string? parameterName = null)
         {
             IEnumerable<T> result = NotNull(value, parameterName);
 
-            if (result.Count() == 0)
+            // ReSharper disable once PossibleMultipleEnumeration
+            if (!result.Any())
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
 
                 throw new ArgumentException(CoreStrings.CollectionArgumentIsEmpty(parameterName));
             }
 
+            // ReSharper disable once PossibleMultipleEnumeration
             return result;
         }
 
-        public static string NotNullOrEmpty(string? value, [ValidatedNotNull] string parameterName)
+        public static string NotNullOrEmpty(string? value, [CallerArgumentExpression("value")] string? parameterName = null)
         {
-            string result = NotNull(value, parameterName);
+            if (value is null)
+            {
+                NotNullOrEmpty(parameterName, nameof(parameterName));
 
-            if (string.IsNullOrEmpty(result))
+                throw new ArgumentNullException(parameterName);
+            }
+
+            if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentException(CoreStrings.ArgumentIsEmpty(parameterName));
             }
 
-            return result;
+            return value;
         }
 
-        public static string NotNullOrWhiteSpace(string? value, [ValidatedNotNull] string parameterName)
+        public static string NotNullOrWhiteSpace(string? value, [CallerArgumentExpression("value")] string? parameterName = null)
         {
-            string result = NotNull(value, parameterName);
+            if (value is null)
+            {
+                NotNullOrEmpty(parameterName, nameof(parameterName));
 
-            if (result.IsNullOrWhiteSpace())
+                throw new ArgumentNullException(parameterName);
+            }
+
+            if (value.IsNullOrWhiteSpace())
             {
                 throw new ArgumentException(CoreStrings.ArgumentIsEmpty(parameterName));
             }
 
-            return result;
+            return value;
         }
 
-        public static IEnumerable<T> HasNoNulls<T>(IEnumerable<T?>? value, [ValidatedNotNull] string parameterName) where T : class
+        public static IEnumerable<T> HasNoNulls<T>(IEnumerable<T> value, [CallerArgumentExpression("value")] string? parameterName = null)
         {
-            IEnumerable<T?> nonNullValue = NotNull(value, parameterName);
+            if (value is null)
+            {
+                NotNullOrEmpty(parameterName, nameof(parameterName));
 
-            if (nonNullValue.Any(e => e is null))
+                throw new ArgumentNullException(parameterName);
+            }
+
+            // ReSharper disable once PossibleMultipleEnumeration
+            if (value.Any(v => v is null))
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
 
                 throw new ArgumentException(parameterName);
             }
 
-            return nonNullValue.Cast<T>();
+            // ReSharper disable once PossibleMultipleEnumeration
+            return value;
         }
     }
 }
