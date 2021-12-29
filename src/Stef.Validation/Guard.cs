@@ -110,7 +110,7 @@ namespace Stef.Validation
             }
 
             // ReSharper disable once PossibleMultipleEnumeration
-            if (value.Any(e => e is null))
+            if (value.Any(v => v is null))
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
 
