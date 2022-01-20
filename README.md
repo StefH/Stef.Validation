@@ -1,8 +1,11 @@
 # Stef.Validation
 Guard methods for argument validation (NotNull, NotEmpty, ...)
 
-## NuGet
-[![NuGet Badge](https://buildstats.info/nuget/Stef.Validation)](https://www.nuget.org/packages/Stef.Validation)
+## Packages
+| NuGet | NuGet |
+| - | - |
+| Stef.Validation | [![NuGet Badge](https://buildstats.info/nuget/Stef.Validation)](https://www.nuget.org/packages/Stef.Validation)
+| Stef.Validation.Options | [![NuGet Badge](https://buildstats.info/nuget/Stef.Validation.Options)](https://www.nuget.org/packages/Stef.Validation.Options)
 
 ## Introduction
 
