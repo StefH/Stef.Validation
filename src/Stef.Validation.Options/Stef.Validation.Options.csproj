@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <VersionPrefix>0.1.0</VersionPrefix>
         <TargetFrameworks>net461;netstandard2.0;netstandard2.1</TargetFrameworks>
         <Description>TOptions validation using DataAnnotations.</Description>
         <SignAssembly>True</SignAssembly>
