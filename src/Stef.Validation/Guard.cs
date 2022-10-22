@@ -13,7 +13,6 @@ public static class Guard
     public static T Condition<T>(T value, Predicate<T> predicate, [CallerArgumentExpression("value")] string? parameterName = null)
     {
         NotNull(predicate, nameof(predicate));
-        var result = NotNull(value, nameof(value));
 
         if (!predicate(value))
         {
@@ -22,7 +21,7 @@ public static class Guard
             throw new ArgumentOutOfRangeException(parameterName);
         }
 
-        return result;
+        return value;
     }
 
     public static T NotNull<T>(T value, [CallerArgumentExpression("value")] string? parameterName = null)

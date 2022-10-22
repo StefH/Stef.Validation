@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Stef.Validation;
 
 namespace ConsoleApp;
@@ -7,7 +8,7 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        var actions = new Action[]
+        var actionsWhichShouldThrow = new Action[]
         {
             () =>
             {
@@ -62,20 +63,31 @@ internal class Program
             () =>
             {
                 Guard.HasNoNulls(new[] { (int?) 1, null });
+            },
+            () =>
+            {
+                int? intValue = 0;
+                Guard.Condition(intValue, value => value == null || value > 0);
             }
         };
 
-        foreach (var action in actions)
+        var actionsWhichShouldNotThrow = new Action[]
         {
-            try
+            () =>
             {
-                action();
+                int? intValue = null;
+                Guard.Condition(intValue, value => value == null || value > 0);
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                Console.WriteLine();
-            }
+        };
+
+        foreach (var action in actionsWhichShouldThrow)
+        {
+            action.Should().Throw<Exception>();
+        }
+
+        foreach (var action in actionsWhichShouldNotThrow)
+        {
+            action.Should().NotThrow<Exception>();
         }
     }
 }
