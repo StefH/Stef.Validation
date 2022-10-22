@@ -3,7 +3,7 @@ namespace System;
 
 internal static class StringExtensions
 {
-    public static bool IsNullOrWhiteSpace(this string value)
+    public static bool IsNullOrWhiteSpace(this string? value)
     {
 #if !(NET20 || NET35)
         return string.IsNullOrWhiteSpace(value);

@@ -1,5 +1,6 @@
-# 0.1.0 (20 January 2022)
+# 0.1.1 (22 October 2022)
 - [#4](https://github.com/StefH/Stef.Validation/pull/4) - Add Stef.Validation.Options project  [enhancement] contributed by [StefH](https://github.com/StefH)
+- [#5](https://github.com/StefH/Stef.Validation/pull/5) - Fix logic for Guard.Condition (allow null value) [bug] contributed by [StefH](https://github.com/StefH)
 
 # 0.1.0 (29 December 2021)
 - [#3](https://github.com/StefH/Stef.Validation/pull/3) - CallerArgumentExpression [enhancement] contributed by [StefH](https://github.com/StefH)
