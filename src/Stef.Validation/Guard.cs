@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -24,6 +25,7 @@ public static class Guard
         return value;
     }
 
+    [return: NotNull]
     public static T NotNull<T>(T value, [CallerArgumentExpression("value")] string? parameterName = null)
     {
         if (value is null)
@@ -36,6 +38,7 @@ public static class Guard
         return value;
     }
 
+    [return: NotNull]
     public static T NotNull<T>(T value, string parameterName, string propertyName)
     {
         if (value is null)
@@ -51,7 +54,7 @@ public static class Guard
 
     public static IEnumerable<T> NotNullOrEmpty<T>(IEnumerable<T> value, [CallerArgumentExpression("value")] string? parameterName = null)
     {
-        IEnumerable<T> result = NotNull(value, parameterName);
+        var result = NotNull(value, parameterName);
 
         // ReSharper disable once PossibleMultipleEnumeration
         if (!result.Any())

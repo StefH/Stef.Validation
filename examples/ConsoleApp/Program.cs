@@ -75,8 +75,35 @@ internal class Program
         {
             () =>
             {
+                var s = (string?) "a";
+                var x = Guard.NotNull(s);
+                if (x[0] != 'a')
+                {
+                    throw new Exception();
+                }
+            },
+            () =>
+            {
+                var s = (string?) "abc";
+                var x = Guard.NotNullOrEmpty(s);
+                if (x[0] != 'a')
+                {
+                    throw new Exception();
+                }
+            },
+            () =>
+            {
+                var s = (string?) "abc";
+                var x = Guard.Condition(s, x => x is { Length: > 1 });
+                if (x![0] != 'a')
+                {
+                    throw new Exception();
+                }
+            },
+            () =>
+            {
                 int? intValue = null;
-                Guard.Condition(intValue, value => value == null || value > 0);
+                Guard.Condition(intValue, value => value is null or < 0);
             }
         };
 
