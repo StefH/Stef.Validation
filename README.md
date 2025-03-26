@@ -4,8 +4,8 @@ Guard methods for argument validation (NotNull, NotEmpty, ...)
 ## Packages
 | NuGet | NuGet |
 | - | - |
-| Stef.Validation | [![NuGet Badge](https://buildstats.info/nuget/Stef.Validation)](https://www.nuget.org/packages/Stef.Validation)
-| Stef.Validation.Options | [![NuGet Badge](https://buildstats.info/nuget/Stef.Validation.Options)](https://www.nuget.org/packages/Stef.Validation.Options)
+| Stef.Validation | [![NuGet Badge](https://img.shields.io/nuget/v/Stef.Validation)](https://www.nuget.org/packages/Stef.Validation)
+| Stef.Validation.Options | [![NuGet Badge](https://img.shields.io/nuget/v/Stef.Validation.Options)](https://www.nuget.org/packages/Stef.Validation.Options)
 
 ## Introduction
 
