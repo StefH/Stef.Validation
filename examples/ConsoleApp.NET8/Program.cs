@@ -1,7 +1,6 @@
 ﻿using AwesomeAssertions;
 using Stef.Validation;
 using System;
-using System.Collections.Generic;
 
 namespace ConsoleApp;
 
@@ -32,22 +31,12 @@ internal class Program
             },
             () =>
             {
-                string s = "";
-                ArgumentException.ThrowIfNullOrEmpty(s);
-            },
-            () =>
-            {
                 Guard.NotNullOrEmpty("");
             },
             () =>
             {
                 string s = "";
                 Guard.NotNullOrWhiteSpace(s);
-            },
-            () =>
-            {
-                string s = "";
-                ArgumentException.ThrowIfNullOrWhiteSpace(s);
             },
             () =>
             {
@@ -71,7 +60,6 @@ internal class Program
             {
                 Guard.NotNullOrEmpty(Array.Empty<int>());
             },
-           
             () =>
             {
                 var intValuesWithNullValue = new[] { (int?) 1, null };
@@ -80,11 +68,6 @@ internal class Program
             () =>
             {
                 Guard.HasNoNulls(new[] { (int?) 1, null });
-            },
-            () =>
-            {
-                IEnumerable<int?> intValuesWithNullValue = new[] { (int?) 1, null };
-                ArgumentException.ThrowIfHasNulls(intValuesWithNullValue);
             },
             () =>
             {
