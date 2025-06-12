@@ -1,6 +1,6 @@
-﻿using AwesomeAssertions;
+﻿using System;
+using AwesomeAssertions;
 using Stef.Validation;
-using System;
 
 namespace ConsoleApp;
 

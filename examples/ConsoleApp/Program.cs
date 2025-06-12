@@ -1,7 +1,7 @@
-﻿using AwesomeAssertions;
-using Stef.Validation;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using AwesomeAssertions;
+using Stef.Validation;
 
 namespace ConsoleApp;
 
