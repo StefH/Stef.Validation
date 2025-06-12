@@ -1,3 +1,6 @@
+# 0.2.0-preview-01 (12 June 2025)
+- [#6](https://github.com/StefH/Stef.Validation/pull/6) - Add extension methods for ArgumentException [enhancement] contributed by [StefH](https://github.com/StefH)
+
 # 0.1.1 (22 October 2022)
 - [#4](https://github.com/StefH/Stef.Validation/pull/4) - Add Stef.Validation.Options project  [enhancement] contributed by [StefH](https://github.com/StefH)
 - [#5](https://github.com/StefH/Stef.Validation/pull/5) - Fix logic for Guard.Condition (allow null value) [bug] contributed by [StefH](https://github.com/StefH)
