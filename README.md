@@ -7,7 +7,7 @@ Guard methods for argument validation (NotNull, NotEmpty, ...)
 | Stef.Validation | [![NuGet Badge](https://img.shields.io/nuget/v/Stef.Validation)](https://www.nuget.org/packages/Stef.Validation)
 | Stef.Validation.Options | [![NuGet Badge](https://img.shields.io/nuget/v/Stef.Validation.Options)](https://www.nuget.org/packages/Stef.Validation.Options)
 
-## Introduction
+## Introduction `Stef.Validation `
 
 Here is a sample constructor that validates its arguments without Guard:
 
@@ -44,5 +44,34 @@ public Person(string name, int age)
     Guard.NotNullOrEmpty(name); // It's also possible to omit the `nameof(...)`-statement because CallerArgumentExpression is used internally.
 
     Guard.Condition(age, a => a > 0, nameof(age));
+}
+```
+
+## Usage `Stef.Validation.Options`
+This package provides an extension method to validate options using data annotations.
+It is useful when you want to ensure that your options are correctly configured at startup.
+
+### Define options class
+
+``` c#
+public class MyOptions
+{
+    [Required] // This attribute ensures that the Name property is not null or empty
+    public required string Name { get; init; }
+}
+```
+
+### Validate options
+
+``` c#
+using Stef.Validation.Options;
+
+public static IServiceCollection Register(this IServiceCollection services, MyOptions options)
+{
+    Guard.NotNull(services);
+    Guard.NotNull(options);
+
+    // Add the options to the service collection. And throw an exception if the options are not valid.
+    services.AddOptionsWithDataAnnotationValidation(options);
 }
 ```

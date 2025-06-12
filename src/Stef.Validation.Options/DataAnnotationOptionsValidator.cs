@@ -10,7 +10,7 @@ public static class DataAnnotationOptionsValidator<TOptions> where TOptions : cl
     {
         if (options == null)
         {
-            throw new OptionsValidationException(Name, typeof(TOptions), new[] { $"The {Name} object is null." });
+            throw new OptionsValidationException(Name, typeof(TOptions), [$"The {Name} object is null."]);
         }
 
         var optionsValidator = new DataAnnotationValidateOptions<TOptions>(Name);
