@@ -4,7 +4,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.2.0-preview-01</Version>
+    <Version>0.2.0-preview-02</Version>
     <Copyright>Copyright © 2020-2025 Stef Heyenrath</Copyright>
     <Authors>Stef Heyenrath</Authors>
     <PackageReleaseNotes>See ReleaseNotes.md</PackageReleaseNotes>
@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="../../PackageReadme.md" Pack="true" PackagePath="" />
+    <None Include="./PackageReadme.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <Choose>

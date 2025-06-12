@@ -6,7 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3BFE2D74-D32A-4D2F-A2D0-F9FE1E76C0FE}"
 	ProjectSection(SolutionItems) = preProject
 		Generate-ReleaseNotes.bat = Generate-ReleaseNotes.bat
-		PackageReadme.md = PackageReadme.md
 		README.md = README.md
 		ReleaseNotes.md = ReleaseNotes.md
 	EndProjectSection
