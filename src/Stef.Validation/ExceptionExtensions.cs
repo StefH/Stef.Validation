@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using Stef.Validation;
 
+// ReSharper disable once CheckNamespace
 namespace System;
 
 public static class ArgumentExceptionExtensions
