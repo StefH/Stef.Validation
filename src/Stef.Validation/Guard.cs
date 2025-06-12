@@ -10,7 +10,7 @@ namespace Stef.Validation;
 [DebuggerStepThrough]
 public static class Guard
 {
-    public static T Condition<T>(T value, Predicate<T> predicate, [CallerArgumentExpression("value")] string? parameterName = null)
+    public static T Condition<T>(T value, Predicate<T> predicate, [CallerArgumentExpression(nameof(value))] string? parameterName = null)
     {
         NotNull(predicate, nameof(predicate));
 
@@ -24,7 +24,7 @@ public static class Guard
         return value;
     }
 
-    public static T NotNull<T>(T value, [CallerArgumentExpression("value")] string? parameterName = null)
+    public static T NotNull<T>(T value, [CallerArgumentExpression(nameof(value))] string? parameterName = null)
     {
         if (value is null)
         {
@@ -49,7 +49,7 @@ public static class Guard
         return value;
     }
 
-    public static IEnumerable<T> NotNullOrEmpty<T>(IEnumerable<T> value, [CallerArgumentExpression("value")] string? parameterName = null)
+    public static IEnumerable<T> NotNullOrEmpty<T>(IEnumerable<T> value, [CallerArgumentExpression(nameof(value))] string? parameterName = null)
     {
         IEnumerable<T> result = NotNull(value, parameterName);
 
@@ -65,7 +65,7 @@ public static class Guard
         return result;
     }
 
-    public static string NotNullOrEmpty(string? value, [CallerArgumentExpression("value")] string? parameterName = null)
+    public static string NotNullOrEmpty(string? value, [CallerArgumentExpression(nameof(value))] string? parameterName = null)
     {
         if (value is null)
         {
@@ -82,7 +82,7 @@ public static class Guard
         return value;
     }
 
-    public static string NotNullOrWhiteSpace(string? value, [CallerArgumentExpression("value")] string? parameterName = null)
+    public static string NotNullOrWhiteSpace(string? value, [CallerArgumentExpression(nameof(value))] string? parameterName = null)
     {
         if (value is null)
         {
@@ -99,7 +99,7 @@ public static class Guard
         return value;
     }
 
-    public static IEnumerable<T> HasNoNulls<T>(IEnumerable<T> value, [CallerArgumentExpression("value")] string? parameterName = null)
+    public static IEnumerable<T> HasNoNulls<T>(IEnumerable<T> value, [CallerArgumentExpression(nameof(value))] string? parameterName = null)
     {
         if (value is null)
         {
