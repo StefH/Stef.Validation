@@ -1,32 +1,37 @@
 <Project>
-	<PropertyGroup>
-		<MsBuildAllProjects>$(MsBuildAllProjects);$(MsBuildThisFileFullPath)</MsBuildAllProjects>
-	</PropertyGroup>
+  <PropertyGroup>
+    <MsBuildAllProjects>$(MsBuildAllProjects);$(MsBuildThisFileFullPath)</MsBuildAllProjects>
+  </PropertyGroup>
 
-	<PropertyGroup>
-		<Version>0.1.1</Version>
-		<Copyright>Copyright © 2020-2025 Stef Heyenrath</Copyright>
-		<Authors>Stef Heyenrath</Authors>
-		<PackageReleaseNotes>See CHANGELOG.md</PackageReleaseNotes>
-		<PackageProjectUrl>https://github.com/StefH/Stef.Validation</PackageProjectUrl>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/StefH/Stef.Validation</RepositoryUrl>
-		<LangVersion>preview</LangVersion>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
+  <PropertyGroup>
+    <Version>0.2.0-preview-01</Version>
+    <Copyright>Copyright © 2020-2025 Stef Heyenrath</Copyright>
+    <Authors>Stef Heyenrath</Authors>
+    <PackageReleaseNotes>See ReleaseNotes.md</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/StefH/Stef.Validation</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/StefH/Stef.Validation</RepositoryUrl>
+    <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
+    <PackageReadmeFile>PackageReadme.md</PackageReadmeFile>
+  </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	</PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
 
-	<Choose>
-		<!-- The environment variable `Prerelease` is set in the azure-pipelines.yml file. -->
-		<When Condition=" '$(Prerelease)' != '' ">
-			<PropertyGroup>
-				<!-- Set the version to x.x.x.x-{Prerelease}-1{Build_BuildId} (this is same buildId as defined in the azure-pipelines.yml file). -->
-				<VersionSuffix>$(Prerelease)-1$(BUILD_BUILDID)</VersionSuffix>
-			</PropertyGroup>
-		</When>
-	</Choose>
+  <ItemGroup>
+    <None Include="../../PackageReadme.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <Choose>
+    <!-- The environment variable `Prerelease` is set in the azure-pipelines.yml file. -->
+    <When Condition=" '$(Prerelease)' != '' ">
+      <PropertyGroup>
+        <!-- Set the version to x.x.x.x-{Prerelease}-1{Build_BuildId} (this is same buildId as defined in the azure-pipelines.yml file). -->
+        <VersionSuffix>$(Prerelease)-1$(BUILD_BUILDID)</VersionSuffix>
+      </PropertyGroup>
+    </When>
+  </Choose>
 </Project>
