@@ -37,9 +37,9 @@ public static class ArgumentExceptionExtensions
 
     extension(ArgumentNullException)
     {
-        public static void ThrowIfNull(object? argument, [CallerArgumentExpression(nameof(argument))] string? parameterName = null)
+        public static void ThrowIfNull(object? value, [CallerArgumentExpression(nameof(value))] string? parameterName = null)
         {
-            _ = Guard.NotNull(argument, parameterName);
+            _ = Guard.NotNull(value, parameterName);
         }
     }
 
