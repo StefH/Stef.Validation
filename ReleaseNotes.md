@@ -1,4 +1,4 @@
-# 0.2.0-preview-01 (12 June 2025)
+# 0.2.0 (13 June 2025)
 - [#6](https://github.com/StefH/Stef.Validation/pull/6) - Add extension methods for ArgumentException [enhancement] contributed by [StefH](https://github.com/StefH)
 
 # 0.1.1 (22 October 2022)
