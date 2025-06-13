@@ -15,6 +15,7 @@
     <LangVersion>preview</LangVersion>
     <Nullable>enable</Nullable>
     <PackageReadmeFile>PackageReadme.md</PackageReadmeFile>
+    <PackageIcon>logo_128x128.png</PackageIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
@@ -23,6 +24,7 @@
 
   <ItemGroup>
     <None Include="./PackageReadme.md" Pack="true" PackagePath="" />
+    <None Include="../../resources/logo_128x128.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <Choose>

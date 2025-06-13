@@ -1,4 +1,4 @@
-# Stef.Validation
+﻿# 🛡️ Stef.Validation
 Guard methods for argument validation (NotNull, NotEmpty, ...)
 
 ## Packages
