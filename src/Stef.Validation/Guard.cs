@@ -119,4 +119,44 @@ public static class Guard
         // ReSharper disable once PossibleMultipleEnumeration
         return value;
     }
+
+    public static T Range<T>(T value, T? min, T? max, [CallerArgumentExpression(nameof(value))] string? parameterName = null)
+        where T : struct, IComparable<T>
+    {
+        if (min.HasValue && value.CompareTo(min.Value) < 0)
+        {
+            NotNullOrEmpty(parameterName, nameof(parameterName));
+
+            throw new ArgumentOutOfRangeException(parameterName);
+        }
+
+        if (max.HasValue && value.CompareTo(max.Value) > 0)
+        {
+            NotNullOrEmpty(parameterName, nameof(parameterName));
+
+            throw new ArgumentOutOfRangeException(parameterName);
+        }
+
+        return value;
+    }
+
+    public static T Range<T>(T value, T? min, T? max, [CallerArgumentExpression(nameof(value))] string? parameterName = null)
+        where T : class, IComparable<T>
+    {
+        if (min is not null && value.CompareTo(min) < 0)
+        {
+            NotNullOrEmpty(parameterName, nameof(parameterName));
+
+            throw new ArgumentOutOfRangeException(parameterName);
+        }
+
+        if (max is not null && value.CompareTo(max) > 0)
+        {
+            NotNullOrEmpty(parameterName, nameof(parameterName));
+
+            throw new ArgumentOutOfRangeException(parameterName);
+        }
+
+        return value;
+    }
 }
