@@ -4,8 +4,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.2.0</Version>
-    <Copyright>Copyright © 2020-2025 Stef Heyenrath</Copyright>
+    <Version>0.3.0</Version>
+    <Copyright>Copyright © 2020-2026 Stef Heyenrath</Copyright>
     <Authors>Stef Heyenrath</Authors>
     <PackageReleaseNotes>See ReleaseNotes.md</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/StefH/Stef.Validation</PackageProjectUrl>

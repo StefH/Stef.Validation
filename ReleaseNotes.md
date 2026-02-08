@@ -1,3 +1,6 @@
+# 0.3.0 (08 February 2026)
+- [#8](https://github.com/StefH/Stef.Validation/pull/8) - Add Range [enhancement] contributed by [StefH](https://github.com/StefH)
+
 # 0.2.0 (13 June 2025)
 - [#6](https://github.com/StefH/Stef.Validation/pull/6) - Add extension methods for ArgumentException [enhancement] contributed by [StefH](https://github.com/StefH)
 
